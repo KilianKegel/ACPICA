@@ -259,18 +259,18 @@ AcpiOsInitialize (
     /* Get the timer frequency for use in AcpiOsGetTimer */
 
     TimerFrequency = 0;
-    if (QueryPerformanceFrequency (&LocalTimerFrequency))
-    {
-        /* Frequency is in ticks per second */
+    //if (QueryPerformanceFrequency (&LocalTimerFrequency))
+    //{
+    //    /* Frequency is in ticks per second */
 
-        TimerFrequency = LocalTimerFrequency.QuadPart;
-    }
+    //    TimerFrequency = LocalTimerFrequency.QuadPart;
+    //}
 
-    Status = AcpiOsCreateLock (&AcpiGbl_PrintLock);
-    if (ACPI_FAILURE (Status))
-    {
-        return (Status);
-    }
+    //Status = AcpiOsCreateLock (&AcpiGbl_PrintLock);
+    //if (ACPI_FAILURE (Status))
+    //{
+    //    return (Status);
+    //}
 
     return (AE_OK);
 }
@@ -438,28 +438,29 @@ UINT64
 AcpiOsGetTimer (
     void)
 {
-    LARGE_INTEGER           Timer;
+    //LARGE_INTEGER           Timer;
 
 
-    /* Attempt to use hi-granularity timer first */
+    ///* Attempt to use hi-granularity timer first */
 
-    if (TimerFrequency &&
-        QueryPerformanceCounter (&Timer))
-    {
-        /* Convert to 100 nanosecond ticks */
+    //if (TimerFrequency &&
+    //    QueryPerformanceCounter (&Timer))
+    //{
+    //    /* Convert to 100 nanosecond ticks */
 
-        return ((UINT64) ((Timer.QuadPart * (UINT64) ACPI_100NSEC_PER_SEC) /
-            TimerFrequency));
-    }
+    //    return ((UINT64) ((Timer.QuadPart * (UINT64) ACPI_100NSEC_PER_SEC) /
+    //        TimerFrequency));
+    //}
 
-    /* Fall back to the lo-granularity timer */
+    ///* Fall back to the lo-granularity timer */
 
-    else
-    {
-        /* Convert milliseconds to 100 nanosecond ticks */
+    //else
+    //{
+    //    /* Convert milliseconds to 100 nanosecond ticks */
 
-        return (GetTickCount64() * ACPI_100NSEC_PER_MSEC);
-    }
+    //    return (GetTickCount64() * ACPI_100NSEC_PER_MSEC);
+    //}
+    return 0LL;
 }
 
 
@@ -482,7 +483,7 @@ AcpiOsReadable (
     ACPI_SIZE               Length)
 {
 
-    return ((BOOLEAN) !IsBadReadPtr (Pointer, Length));
+    return 1;// ((BOOLEAN)!IsBadReadPtr(Pointer, Length));
 }
 
 
@@ -505,7 +506,7 @@ AcpiOsWritable (
     ACPI_SIZE               Length)
 {
 
-    return ((BOOLEAN) !IsBadWritePtr (Pointer, Length));
+    return 0;// ((BOOLEAN)!IsBadWritePtr(Pointer, Length));
 }
 
 
@@ -1256,7 +1257,7 @@ AcpiOsStall (
     UINT32                  Microseconds)
 {
 
-    Sleep ((Microseconds / ACPI_USEC_PER_MSEC) + 1);
+//    Sleep ((Microseconds / ACPI_USEC_PER_MSEC) + 1);
     return;
 }
 
@@ -1278,9 +1279,9 @@ AcpiOsSleep (
     UINT64                  Milliseconds)
 {
 
-    /* Add 10ms to account for clock tick granularity */
+    ///* Add 10ms to account for clock tick granularity */
 
-    Sleep (((unsigned long) Milliseconds) + 10);
+    //Sleep (((unsigned long) Milliseconds) + 10);
     return;
 }
 

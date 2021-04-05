@@ -152,6 +152,7 @@
 #include "aecommon.h"
 #include "acdispat.h"
 #include "acnamesp.h"
+#include <string.h>
 
 
 #define _COMPONENT          ACPI_TOOLS

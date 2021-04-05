@@ -387,7 +387,7 @@ AcpiEvAcquireGlobalLock (
     {
         /* Attempt to acquire the actual hardware lock */
 
-        ACPI_ACQUIRE_GLOBAL_LOCK (AcpiGbl_FACS, Acquired);
+        //ACPI_ACQUIRE_GLOBAL_LOCK (AcpiGbl_FACS, Acquired);
         if (Acquired)
         {
             AcpiGbl_GlobalLockAcquired = TRUE;
@@ -461,7 +461,7 @@ AcpiEvReleaseGlobalLock (
     {
         /* Allow any thread to release the lock */
 
-        ACPI_RELEASE_GLOBAL_LOCK (AcpiGbl_FACS, Pending);
+        //ACPI_RELEASE_GLOBAL_LOCK (AcpiGbl_FACS, Pending);
 
         /*
          * If the pending bit was set, we must write GBL_RLS to the control
